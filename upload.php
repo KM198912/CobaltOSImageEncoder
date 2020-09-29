@@ -50,15 +50,20 @@ $redList = array();
 $greenList = array();
 $blueList = array();
 
+$index = 0;
 for($x = 0; $x < $width; $x++) {
     for($y = 0; $y < $height; $y++) {
-        // pixel color at (x, y)
         $rgb = imagecolorat($resource, $x, $y);
-	$redList[($x * $y) + $x] = ($rgb >> 16) & 255;
-	$greenList[($x * $y) + $x] = ($rgb >> 8) & 255;
-	$blueList[($x * $y) + $x] = $rgb & 255;
+	$r = ($rgb >> 16) & 0xFF;
+	$g = ($rgb >> 8) & 0xFF;
+	$b = $rgb & 0xFF;
+	$redList[$index] = $r;
+	$greenList[$index] = $g;
+	$blueList[$index] = $b;
+	$index = $index + 1;
     }
 }
+
 foreach ($redList as $i) {
 	$o = $o . $i . ",";
 }
@@ -71,6 +76,5 @@ foreach ($greenList as $i) {
 	$o = $o . $i . ",";
 }
 $o = rtrim($o, ",");
-$deflate = base64_encode(gzdeflate($o, 9));
-echo $deflate;
+echo $o;
 ?>
