@@ -1,4 +1,5 @@
 <?php
+if(!function_exists('imagecreatefromjpeg')) exit("php-gd is not installed please ask your host to enable/install it");
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
