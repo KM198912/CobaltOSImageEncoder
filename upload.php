@@ -1,4 +1,5 @@
 <?php
+if(!is_writeable("uploads")) exit("Uploads folder is not writeable");
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
